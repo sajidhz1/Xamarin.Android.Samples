@@ -51,7 +51,8 @@
     <Compile Include="EndlessListActivity.cs" />
     <Compile Include="AdapterWrapper.cs" />
     <Compile Include="DemoAdapter.cs" />
-    <Compile Include="EndlessAdapter.cs" />
+    <Compile Include="EndlessAdapterBase.cs" />
+    <Compile Include="NotificatingDataSetObserver.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

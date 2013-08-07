@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 using Android.Content;
 using Android.Util;
@@ -138,9 +137,9 @@ namespace EndlessScrollPort
 			{
 				result = GetPendingItemView(parent);
 
+				// Uncomment when bug #13788 fixed
+				// https://bugzilla.xamarin.com/show_bug.cgi?id=13788
 				// This is not working correctly:
-				// Task.Delay() call from DemoAdapter.LoadData will never return.
-				// TODO: check with xamarin guys what's wrong there
 /*
 				Task.Factory.StartNew(
 				() => ExecuteItemLoadAsync(),
@@ -149,9 +148,6 @@ namespace EndlessScrollPort
 				TaskScheduler.FromCurrentSynchronizationContext());
 */
 
-				// Use instead of Task.Factory.StartNew - it will be working but:
-				// 1. We getting compiler warning
-				// 2. Not sure that exception flow in ExecuteItemLoadAsync will be correct
 				ExecuteItemLoadAsync();
 			}
 			else

@@ -1,34 +1,11 @@
-using System;
-using Android.Database;
 using Android.Views;
 using Android.Widget;
 
 namespace EndlessScrollPort
 {
-	// TODO: refactoring
-	public class MyDataSetObserver : DataSetObserver
-	{
-		private readonly Action _onChanged;
-		private readonly Action _onIvalidated;
-
-		public MyDataSetObserver(Action onChanged, Action onIvalidated)
-		{
-			_onChanged = onChanged;
-			_onIvalidated = onIvalidated;
-		}
-
-		public override void OnChanged()
-		{
-			_onChanged();
-		}
-
-		public override void OnInvalidated()
-		{
-			_onIvalidated();
-		}
-	}
-
-
+	/// <summary>
+	/// Wraps an adapter and raises notification when dataset changes.
+	/// </summary>
 	public class AdapterWrapper : BaseAdapter
 	{
 		private readonly IListAdapter _wrappedAdapter = null;
@@ -37,7 +14,7 @@ namespace EndlessScrollPort
 		{
 			this._wrappedAdapter = wrapped;
 
-			MyDataSetObserver dataSetObserver = new MyDataSetObserver(NotifyDataSetChanged, NotifyDataSetInvalidated);
+			NotificatingDataSetObserver dataSetObserver = new NotificatingDataSetObserver(NotifyDataSetChanged, NotifyDataSetInvalidated);
 			wrapped.RegisterDataSetObserver(dataSetObserver);
 		}
 
